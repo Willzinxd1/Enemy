@@ -44,7 +44,7 @@ macro(100, 'Enemy', function()
         local specName = creature:getName():lower()
         
         if not creature.whiteList and creature:isPlayer() and specHp and specHp > 0 
-           and specHp <= 90 and isInRange(pos, specPos, 6) then
+           and specHp <= 95 and isInRange(pos, specPos, 6) then
             if shouldAttack(creature, specName) and creature:getEmblem() ~= 4 
                and creature:getShield() ~= 3 and creature:canShoot() then
                 if not actualTarget or actualTargetHp > specHp 
@@ -72,33 +72,6 @@ macro(100, 'Attack PK', function()
         
         if not creature.whiteList and creature:isPlayer() and specHp and specHp > 0 
            and creature:getSkull() ~= 0 and isInRange(pos, specPos, 6) then
-            if shouldAttack(creature, specName) and creature:getEmblem() ~= 1 
-               and creature:getShield() < 3 and creature:canShoot() then
-                if not actualTarget or actualTargetHp > specHp 
-                   or (actualTargetHp == specHp and getDistanceBetween(pos, actualTargetPos) > getDistanceBetween(specPos, pos)) then
-                    actualTarget, actualTargetPos, actualTargetHp = creature, specPos, specHp
-                end
-            end
-        end
-    end
-    
-    if actualTarget and g_game.getAttackingCreature() ~= actualTarget then
-        modules.game_interface.processMouseAction(nil, 2, pos, nil, actualTarget, actualTarget)
-    end
-end)
-
-macro(100, 'Attack System', function()
-    if isInPz() then return end
-    local pos = pos()
-    local actualTarget, actualTargetPos, actualTargetHp
-    
-    for _, creature in ipairs(getSpectators(pos)) do
-        local specHp = creature:getHealthPercent()
-        local specPos = creature:getPosition()
-        local specName = creature:getName():lower()
-        
-        if not creature.whiteList and creature:isPlayer() and specHp and specHp > 0 
-           and creature:getEmblem() == 4 and isInRange(pos, specPos, 6) then
             if shouldAttack(creature, specName) and creature:getEmblem() ~= 1 
                and creature:getShield() < 3 and creature:canShoot() then
                 if not actualTarget or actualTargetHp > specHp 
