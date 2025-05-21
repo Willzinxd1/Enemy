@@ -72,8 +72,8 @@ macro(100, 'Attack PK', function()
         
         if not creature.whiteList and creature:isPlayer() and specHp and specHp > 0 
            and creature:getSkull() ~= 0 then
-            if shouldAttack(creature, specName) and creature:getEmblem() ~= 1 
-               and creature:getShield() < 3 and creature:canShoot() then
+            if shouldAttack(creature, specName) and creature:getEmblem() ~= 4 
+               and creature:getShield() ~= 3 and creature:canShoot() then
                 if not actualTarget or actualTargetHp > specHp 
                    or (actualTargetHp == specHp and getDistanceBetween(pos, actualTargetPos) > getDistanceBetween(specPos, pos)) then
                     actualTarget, actualTargetPos, actualTargetHp = creature, specPos, specHp
