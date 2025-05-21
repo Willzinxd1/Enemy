@@ -71,7 +71,7 @@ macro(100, 'Attack PK', function()
         local specName = creature:getName():lower()
         
         if not creature.whiteList and creature:isPlayer() and specHp and specHp > 0 
-           and creature:getSkull() ~= 0 and isInRange(pos, specPos, 7) then
+           and creature:getSkull() ~= 0 then
             if shouldAttack(creature, specName) and creature:getEmblem() ~= 1 
                and creature:getShield() < 3 and creature:canShoot() then
                 if not actualTarget or actualTargetHp > specHp 
